@@ -1,0 +1,826 @@
+{% extends "basefile/base.html" %}
+{% load static %}
+
+{% block seo %}
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wifiresult.xyz - Government Exam Results Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+
+
+{% endblock seo %}
+
+{% block style %}
+<style>
+        :root {
+            --primary: #1a4f8c;
+            --secondary: #ff6b00;
+            --accent: #00a651;
+            --light: #f5f8fa;
+            --dark: #1e2a38;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-links a {
+            color: #ddd;
+            text-decoration: none;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        
+        .top-links a:hover {
+            color: white;
+        }
+        
+        .social-links a {
+            color: white;
+            margin-left: 12px;
+            font-size: 16px;
+        }
+        
+        /* Main Header */
+        .main-header {
+            background: linear-gradient(to right, var(--primary), #0d3a70);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 36px;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            color: white;
+        }
+        
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .search-box {
+            background: white;
+            border-radius: 50px;
+            padding: 5px 15px;
+            width: 350px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .search-box button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .nav-container {
+            display: flex;
+        }
+        
+        .nav-item {
+            padding: 15px 20px;
+            font-weight: 500;
+            color: var(--dark);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item:hover::after, .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(26, 79, 140, 0.9), rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-content {
+            position: relative;
+            color: white;
+            padding: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-content h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e55e00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Results Section */
+        .section-title {
+            font-size: 24px;
+            color: var(--primary);
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e6ed;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .result-badge {
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .result-content {
+            padding: 20px;
+        }
+        
+        .result-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .result-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .result-date {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .result-actions {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .result-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .result-link i {
+            margin-right: 5px;
+        }
+        
+        .result-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Categories Section */
+        .categories {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .category-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .category-card i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .category-card:hover i {
+            color: white;
+        }
+        
+        .category-card h3 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        /* Important Links */
+        .important-links {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .link-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        
+        .link-card:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .link-card h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .link-card ul {
+            list-style: none;
+        }
+        
+        .link-card li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .link-card a {
+            color: #444;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .link-card a i {
+            margin-right: 8px;
+            font-size: 12px;
+            color: var(--primary);
+        }
+        
+        .link-card:hover a {
+            color: white;
+        }
+        
+        .link-card:hover a i {
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-column p {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d3e50;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .search-box {
+                width: 250px;
+            }
+            
+            .hero-content h2 {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-links {
+                display: none;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            .search-box {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .hero {
+                height: 350px;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero-content h2 {
+                font-size: 24px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+{% endblock style %}
+
+
+
+{% block body %}
+ 
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>India's Most Trusted Government Exam Results Portal</h2>
+                <p>Get latest exam results, admit cards, answer keys and job notifications from all government departments in one place.</p>
+                <a href="#" class="btn">Check Latest Results <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+        
+        <!-- Latest Results Section -->
+        <section>
+             
+            <div class="results-grid">
+                <!-- Result Card 1 -->
+                <div class="result-card">
+                    <div class="result-badge"style="text-align:center;"><i class="fas fa-briefcase"></i> Latest Jobs</div>
+
+                    <div class="result-content">
+                        <h3 class="result-title">SSC CHSL 2023 Final Result Declared</h3>
+                        <div class="result-meta">
+                            <span class="result-date">05 Sep 2023</span>
+                        </div>
+                        <hr>
+                          <h3 class="result-title">SSC CHSL 2023 Final Result Declared</h3>
+                        <div class="result-meta">
+                            <span class="result-date">05 Sep 2023</span>
+                        </div>
+
+                        <div class="result-actions">
+                            <a href="#" class="result-link"><i class="fas fa-eye"></i> View Result</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result Card 2 -->
+                <div class="result-card">
+                    <div class="result-badge" style="background: var(--accent); text-align:center;"> <i class="fas fa-bolt"></i> Latest Results </div>
+                    <div class="result-content">
+                        <h3 class="result-title">UPSC Civil Services Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">03 Sep 2023</span>
+                        </div> 
+                        <hr>
+                          <h3 class="result-title">UPSC Civil Services Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">03 Sep 2023</span>
+                        </div>
+                        
+                        <div class="result-actions">
+                            <a href="#" class="result-link"><i class="fas fa-eye"></i> View Result</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result Card 3 -->
+                <div class="result-card">
+                    <div class="result-badge" style="background: var(--warning); text-align:center;"><i class="fas fa-id-card"></i> Latest Admit Cards</div>
+                    <div class="result-content">
+                        <h3 class="result-title">IBPS Clerk XIII Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">01 Sep 2023</span>
+                        </div><hr>
+                         <h3 class="result-title">IBPS Clerk XIII Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">01 Sep 2023</span>
+                        </div>
+                      
+                        <div class="result-actions">
+                            <a href="#" class="result-link"><i class="fas fa-eye"></i> View Result</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result Card 4 -->
+                <div class="result-card">
+                    <div class="result-badge" style="background: var(--danger);text-align:center;">Latest Answer Keys</div>
+                    <div class="result-content">
+                        <h3 class="result-title">RRB NTPC CBT-2 Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">29 Aug 2023</span>
+                        </div><hr>
+                         <h3 class="result-title">RRB NTPC CBT-2 Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">29 Aug 2023</span>
+                        </div>
+              
+                        <div class="result-actions">
+                            <a href="#" class="result-link"><i class="fas fa-eye"></i> View Result</a>
+                        </div>
+                    </div>
+                </div>
+       
+                  <!-- Result Card 5 -->
+                <div class="result-card">
+                    <div class="result-badge" style="background: var(--warning); text-align:center;"> Latest Syllabus</div>
+                    <div class="result-content">
+                        <h3 class="result-title">IBPS Clerk XIII Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">01 Sep 2023</span>
+                        </div><hr>
+                         <h3 class="result-title">IBPS Clerk XIII Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">01 Sep 2023</span>
+                        </div>
+                      
+                        <div class="result-actions">
+                            <a href="#" class="result-link"><i class="fas fa-eye"></i> View Result</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Result Card 6 -->
+                <div class="result-card">
+                    <div class="result-badge" style="background: var(--warning); text-align:center;"> Latest Admission</div>
+                    <div class="result-content">
+                        <h3 class="result-title">IBPS Clerk XIII Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">01 Sep 2023</span>
+                        </div><hr>
+                         <h3 class="result-title">IBPS Clerk XIII Prelims Result 2023</h3>
+                        <div class="result-meta">
+                            <span class="result-date">01 Sep 2023</span>
+                        </div>
+                      
+                        <div class="result-actions">
+                            <a href="#" class="result-link"><i class="fas fa-eye"></i> View Result</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+
+
+            </div>
+        </section>
+
+
+
+        
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px;">
+            <!-- Left Column -->
+            <div>
+                 
+                
+                
+            
+            <!-- Right Column -->
+            <div>
+                <!-- Categories Section -->
+                <section class="categories">
+                    <h2 class="section-title"><i class="fas fa-folder"></i> Result Categories</h2>
+                    <div class="category-grid">
+                        <div class="category-card">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>SSC Results</h3>
+                        </div>
+                        <div class="category-card">
+                            <i class="fas fa-university"></i>
+                            <h3>UPSC Results</h3>
+                        </div>
+                        <div class="category-card">
+                            <i class="fas fa-train"></i>
+                            <h3>Railway Results</h3>
+                        </div>
+                        <div class="category-card">
+                            <i class="fas fa-landmark"></i>
+                            <h3>Banking Results</h3>
+                        </div>
+                        <div class="category-card">
+                            <i class="fas fa-flask"></i>
+                            <h3>Engineering Results</h3>
+                        </div>
+                        <div class="category-card">
+                            <i class="fas fa-user-md"></i>
+                            <h3>Medical Results</h3>
+                        </div>
+                        <div class="category-card">
+                            <i class="fas fa-book"></i>
+                            <h3>University Results</h3>
+                        </div>
+                        <div class="category-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>State Level Results</h3>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Important Links -->
+                <section class="important-links">
+                    <h2 class="section-title"><i class="fas fa-link"></i> Important Links</h2>
+                    <div class="links-grid">
+                        <div class="link-card">
+                            <h3>Government Portals</h3>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> SSC Official Website</a></li>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> UPSC Official Website</a></li>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> RRB Official Website</a></li>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> IBPS Official Website</a></li>
+                            </ul>
+                        </div>
+                        <div class="link-card">
+                            <h3>Quick Links</h3>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> Latest Results</a></li>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> Admit Cards</a></li>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> Answer Keys</a></li>
+                                <li><a href="#"><i class="fas fa-caret-right"></i> Syllabus</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+{% endblock body %}
