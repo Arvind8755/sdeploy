@@ -338,9 +338,9 @@
             <div class="top-links">
                 <a href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
                 <a href="{% url 'results' %}"><i class="fas fa-newspaper"></i> Latest Results</a>
-                <a href="#"><i class="fas fa-ad"></i> Admit Cards</a>
-                <a href="#"><i class="fas fa-file-alt"></i> Answer Keys</a>
-                <a href="#"><i class="fas fa-search"></i> Search Results</a>
+                <a href="{% url 'admitcards' %}"><i class="fas fa-ad"></i> Admit Cards</a>
+                <a href="{% url 'answerkeys' %}"><i class="fas fa-file-alt"></i> Answer Keys</a>
+                <a href="{% url 'search' %}"><i class="fas fa-search"></i> Search Results</a>
             </div>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -359,7 +359,7 @@
                     <i class="fas fa-file-contract"></i>
                 </div>
                 <div class="logo-text">
-                    <h1>wifiresult.xyz</h1>
+                    <h2>wifiresult.xyz</h2>
                     <span>Government Exam Results Portal</span>
                 </div>
             </div>
@@ -386,7 +386,7 @@
                 <a href="{% url 'jobs' %}" class="nav-item"><i class="fas fa-bullhorn"></i> Latest Jobs</a>
                 <a href="{% url 'syllabus' %}" class="nav-item"><i class="fas fa-book"></i> Syllabus</a>
                 <a href="{% url 'about' %}" class="nav-item"><i class="fas fa-info-circle"></i> About</a>
-                <a href="#" class="nav-item"><i class="fas fa-phone"></i> Contact</a>
+                <a href="{% url 'contact' %}" class="nav-item"><i class="fas fa-phone"></i> Contact</a>
             </div>
         </div>
     </nav>
@@ -424,6 +424,7 @@
                         <li><a href="#">Admit Cards</a></li>
                         <li><a href="#">Answer Keys</a></li>
                         <li><a href="#">Latest Jobs</a></li>
+                        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
                     </ul>
                 </div>
                 

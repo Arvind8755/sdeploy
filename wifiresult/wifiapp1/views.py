@@ -30,3 +30,15 @@ def syllabus(request):
 def about(request):
     # Render the about.html template
     return render(request, 'mainfile/about.html')
+
+def contact(request):
+    # Render the contact.html template
+    return render(request, 'mainfile/contact.html')
+
+def search(request):
+    # Render the search.html template
+    return render(request, 'mainfile/search.html')
+
+def privacy(request):
+    # Render the privacy.html template
+    return render(request, 'mainfile/privacy.html')

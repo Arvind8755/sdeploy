@@ -1,0 +1,824 @@
+{% extends "basefile/base.html" %}
+{% load static %}
+
+{% block seo %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - wifiresult.xyz</title>
+    <meta name="description" content=" At WifiResult.XYZ, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you visit our website.">
+    <meta name="keywords" content="UP Police Recruitment,wifiresult.xyz privacy, wifiresult xyz data policy UP Police Result, UP Police Online form"/>
+<meta name="rating" content="general"/>
+<meta http-equiv="content-language" content="en"/>
+<meta name="distribution" content="global"/>
+<meta name="robots" content="index, follow"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% endblock seo %}
+
+{% block style %}
+<style>
+ :root {
+            --primary: #1a4f8c;
+            --secondary: #ff6b00;
+            --accent: #00a651;
+            --light: #f5f8fa;
+            --dark: #1e2a38;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-links a {
+            color: #ddd;
+            text-decoration: none;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        
+        .top-links a:hover {
+            color: white;
+        }
+        
+        .social-links a {
+            color: white;
+            margin-left: 12px;
+            font-size: 16px;
+        }
+        
+        /* Main Header */
+        .main-header {
+            background: linear-gradient(to right, var(--primary), #0d3a70);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 36px;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            color: white;
+        }
+        
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .search-box {
+            background: white;
+            border-radius: 50px;
+            padding: 5px 15px;
+            width: 350px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .search-box button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .nav-container {
+            display: flex;
+        }
+        
+        .nav-item {
+            padding: 15px 20px;
+            font-weight: 500;
+            color: var(--dark);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item:hover::after, .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+    
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-column p {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d3e50;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .search-box {
+                width: 250px;
+            }
+            
+            .hero-content h2 {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-links {
+                display: none;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            .search-box {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .hero {
+                height: 350px;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero-content h2 {
+                font-size: 24px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+
+
+
+    :root {
+        --primary: #1a4f8c;
+        --secondary: #ff6b00;
+        --accent: #00a651;
+        --light: #f5f8fa;
+        --dark: #1e2a38;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    /* Page Header */
+    .page-header {
+        background: linear-gradient(to right, var(--primary), #0d3a70);
+        color: white;
+        padding: 60px 0;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .page-header h1 {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+    
+    .breadcrumb {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        margin-top: 20px;
+    }
+    
+    .breadcrumb li {
+        margin: 0 5px;
+    }
+    
+    .breadcrumb li a {
+        color: #ddd;
+        text-decoration: none;
+    }
+    
+    .breadcrumb li a:hover {
+        color: white;
+    }
+    
+    .breadcrumb li::after {
+        content: '>';
+        margin-left: 10px;
+        color: #aaa;
+    }
+    
+    .breadcrumb li:last-child::after {
+        content: '';
+    }
+    
+    /* Privacy Policy Content */
+    .privacy-content {
+        background: white;
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 50px;
+    }
+    
+    .policy-section {
+        margin-bottom: 40px;
+    }
+    
+    .policy-section h2 {
+        font-size: 28px;
+        color: var(--primary);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e0e6ed;
+        display: flex;
+        align-items: center;
+    }
+    
+    .policy-section h2 i {
+        margin-right: 15px;
+        background: var(--primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .policy-section h3 {
+        font-size: 22px;
+        color: var(--dark);
+        margin: 25px 0 15px;
+    }
+    
+    .policy-text {
+        font-size: 17px;
+        line-height: 1.8;
+        margin-bottom: 15px;
+        color: #444;
+    }
+    
+    .policy-list {
+        padding-left: 30px;
+        margin: 15px 0;
+    }
+    
+    .policy-list li {
+        margin-bottom: 12px;
+        line-height: 1.6;
+    }
+    
+    .highlight-box {
+        background: #f8f9fa;
+        border-left: 4px solid var(--primary);
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+    
+    .update-date {
+        background: var(--primary);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin: 30px 0;
+        font-weight: 500;
+    }
+    
+    /* Contact Section */
+    .contact-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 30px;
+        border-left: 4px solid var(--primary);
+    }
+    
+    .contact-section h3 {
+        font-size: 24px;
+        color: var(--primary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .contact-section h3 i {
+        margin-right: 10px;
+    }
+    
+    .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+    }
+    
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(26, 79, 140, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 20px;
+        color: var(--primary);
+    }
+    
+    .contact-details h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: var(--dark);
+    }
+    
+    .contact-details p {
+        color: #666;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 32px;
+        }
+        
+        .policy-section h2 {
+            font-size: 24px;
+        }
+        
+        .privacy-content {
+            padding: 25px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .page-header {
+            padding: 40px 0;
+        }
+        
+        .page-header h1 {
+            font-size: 28px;
+        }
+        
+        .policy-section h2 i {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-shield-alt"></i> Privacy Policy</h1>
+            <p>Your privacy is important to us</p>
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>Privacy Policy</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <div class="privacy-content">
+            <div class="update-date">
+                <i class="fas fa-calendar-alt"></i> Last Updated: September 10, 2023
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p class="policy-text">
+                    Welcome to wifiresult.xyz ("we," "our," or "us"). We are committed to protecting your personal 
+                    information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, 
+                    and safeguard your information when you visit our website wifiresult.xyz (the "Site").
+                </p>
+                <p class="policy-text">
+                    Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, 
+                    please do not access the site. We reserve the right to make changes to this Privacy Policy at any time 
+                    and for any reason. We will alert you about any changes by updating the "Last Updated" date of this 
+                    Privacy Policy.
+                </p>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-database"></i> Information We Collect</h2>
+                <p class="policy-text">
+                    We collect information that you provide to us directly and information that we collect automatically 
+                    when you use our Site:
+                </p>
+                
+                <h3>Personal Information You Disclose to Us</h3>
+                <p class="policy-text">
+                    We collect personal information that you voluntarily provide to us when you register on the Site, 
+                    express an interest in obtaining information about us or our products and services, or otherwise 
+                    when you contact us.
+                </p>
+                <ul class="policy-list">
+                    <li><strong>Account Information:</strong> If you create an account, we collect your name, email address, and password.</li>
+                    <li><strong>Communication Information:</strong> If you contact us, we collect your name, email address, and the contents of your message.</li>
+                    <li><strong>Notification Preferences:</strong> If you subscribe to notifications, we collect your email address and notification preferences.</li>
+                </ul>
+                
+                <h3>Information Collected Automatically</h3>
+                <p class="policy-text">
+                    When you visit, use, or navigate the Site, we may automatically collect certain information about 
+                    your device and usage patterns:
+                </p>
+                <ul class="policy-list">
+                    <li><strong>Device Information:</strong> We collect device information such as your IP address, browser type, operating system, and device identifiers.</li>
+                    <li><strong>Usage Information:</strong> We collect information about your interactions with our Site, including pages visited, links clicked, and search queries.</li>
+                    <li><strong>Location Information:</strong> We may collect approximate location data based on your IP address.</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-cogs"></i> How We Use Your Information</h2>
+                <p class="policy-text">
+                    We use the information we collect in various ways, including to:
+                </p>
+                <ul class="policy-list">
+                    <li>Provide, operate, and maintain our website</li>
+                    <li>Improve, personalize, and expand our website</li>
+                    <li>Understand and analyze how you use our website</li>
+                    <li>Develop new products, services, features, and functionality</li>
+                    <li>Communicate with you, either directly or through one of our partners, for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
+                    <li>Send you emails and notifications about exam results, admit cards, and other educational updates</li>
+                    <li>Prevent fraud and enhance security</li>
+                    <li>Comply with legal obligations and enforce our terms</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-cookie-bite"></i> Cookies and Tracking Technologies</h2>
+                <p class="policy-text">
+                    We use cookies and similar tracking technologies to access or store information. Specific information 
+                    about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Policy.
+                </p>
+                
+                <h3>Types of Cookies We Use</h3>
+                <ul class="policy-list">
+                    <li><strong>Essential Cookies:</strong> Necessary for the website to function and cannot be switched off.</li>
+                    <li><strong>Performance Cookies:</strong> Help us understand how visitors interact with our website.</li>
+                    <li><strong>Functional Cookies:</strong> Enable enhanced functionality and personalization.</li>
+                    <li><strong>Targeting Cookies:</strong> Used to deliver relevant advertisements to you.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-cog"></i> Cookie Management</h3>
+                    <p class="policy-text">
+                        You can control cookies through your browser settings. However, if you choose to disable cookies, 
+                        it may affect your ability to use certain features of our website.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-share-alt"></i> Sharing Your Information</h2>
+                <p class="policy-text">
+                    We may share your information in the following situations:
+                </p>
+                <ul class="policy-list">
+                    <li><strong>With Service Providers:</strong> We may share your data with third-party vendors, service providers, contractors, or agents who perform services for us.</li>
+                    <li><strong>Business Transfers:</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
+                    <li><strong>With Affiliates:</strong> We may share your information with our affiliates, in which case we will require those affiliates to honor this privacy policy.</li>
+                    <li><strong>With Business Partners:</strong> We may share your information with our business partners to offer you certain products, services, or promotions.</li>
+                    <li><strong>With Your Consent:</strong> We may disclose your personal information for any other purpose with your consent.</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-lock"></i> Data Security</h2>
+                <p class="policy-text">
+                    We have implemented appropriate technical and organizational security measures designed to protect 
+                    the security of any personal information we process. However, please also remember that we cannot 
+                    guarantee that the internet itself is 100% secure. Although we will do our best to protect your 
+                    personal information, transmission of personal information to and from our Site is at your own risk.
+                </p>
+                
+                <h3>Security Measures We Implement</h3>
+                <ul class="policy-list">
+                    <li>SSL/TLS encryption for data transmission</li>
+                    <li>Regular security audits and vulnerability testing</li>
+                    <li>Access controls and authentication systems</li>
+                    <li>Data minimization and retention policies</li>
+                    <li>Employee training on data protection</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-user-shield"></i> Your Privacy Rights</h2>
+                <p class="policy-text">
+                    Depending on your location, you may have the following rights regarding your personal information:
+                </p>
+                <ul class="policy-list">
+                    <li><strong>Access:</strong> Request access to your personal information.</li>
+                    <li><strong>Correction:</strong> Request correction of any inaccurate personal information.</li>
+                    <li><strong>Deletion:</strong> Request deletion of your personal information.</li>
+                    <li><strong>Objection:</strong> Object to processing of your personal information.</li>
+                    <li><strong>Restriction:</strong> Request restriction of processing your personal information.</li>
+                    <li><strong>Data Portability:</strong> Request transfer of your personal information to another organization.</li>
+                    <li><strong>Withdraw Consent:</strong> Withdraw your consent at any time where we rely on consent to process your information.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p class="policy-text">
+                        To exercise any of these rights, please contact us using the contact details provided below. 
+                        We will respond to your request within 30 days.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                <p class="policy-text">
+                    Our Site is not intended for children under the age of 13. We do not knowingly collect personal 
+                    information from children under 13. If we learn that we have collected personal information from a 
+                    child under age 13 without verification of parental consent, we will delete that information as 
+                    quickly as possible. If you believe that we might have any information from or about a child under 
+                    13, please contact us.
+                </p>
+            </div>
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-sync-alt"></i> Changes to This Policy</h2>
+                <p class="policy-text">
+                    We may update this Privacy Policy from time to time. The updated version will be indicated by an 
+                    updated "Last Updated" date and the updated version will be effective as soon as it is accessible. 
+                    We encourage you to review this privacy policy frequently to be informed of how we are protecting 
+                    your information.
+                </p>
+            </div>
+            
+            <div class="contact-section">
+                <h3><i class="fas fa-envelope"></i> Contact Us</h3>
+                <p class="policy-text">
+                    If you have questions or comments about this Privacy Policy, please contact us at:
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>privacy@wifiresult.xyz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+91 9876543210</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Address</h4>
+                            <p>123 Privacy Plaza, New Delhi, India - 110001</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock body %}
+
+{% block script %}
+<script>
+    // Simple animation for sections on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.policy-section, .contact-section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.5s ease';
+            observer.observe(section);
+        });
+    });
+</script>
+{% endblock script %}

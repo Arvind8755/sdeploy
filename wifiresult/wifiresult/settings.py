@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wifiapp1',   
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
