@@ -1,0 +1,354 @@
+{% extends "basefile/base.html" %}
+{% load static %}
+
+{% block seo %}
+    <title>{{ job.title }}</title> 
+    <link rel="canonical" href="https://wifiresult.xyz/{{job.slug}}"/>
+  <meta name="description" content="{{job.meta_description}}">
+<meta name="keywords" content="{{job.meta_keywords}}">
+<meta property="og:title" content="{{ job.title }}" />
+<meta name="og:description" content="{{ job.meta_description}}"/>
+
+{% if job.og_image %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ job.og_image.url }}">
+{% endif %}
+{% if job.og_image_alt %}
+<meta property="og:image:alt" content="{{ job.og_image_alt }}" />
+{% endif %}
+ 
+<meta property="og:image:type" content="image/jpeg" />
+<meta name="twitter:card" content="summary_large_image" />
+{% if job.og_image %}
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ job.og_image.url }}" />
+{% endif %}
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="{{ job.updated_at|date:'c' }}">
+<meta property="article:modified_time" content="{{ job.updated_at|date:'c' }}">
+<meta property="og:url" content="https://wifiresult.xyz/{{job.slug}}"/>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel=" shortcut icon" type="image/jpg" href="{% static 'images/favicon.jpg' %}">
+   {% if job.schema %}
+    <script type="application/ld+json">
+    {{ job.schema|safe }}
+    </script>
+    {% endif %}
+
+{% endblock seo %}
+
+{% block style %}
+<style> 
+
+    
+    /* ==================== MAIN CONTENT ==================== */
+    main {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px auto;
+    }
+
+    .main-left,
+    .main-right {
+        flex: 0 0 14rem;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .main-between {
+        flex: 1;
+        min-width: 300px;
+        padding: 0 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin: 0 15px;
+    }
+
+
+    /* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+    @media (max-width: 1100px) {
+        .header-content {
+            flex-direction: column;
+            align-items: stretch;
+            
+        }
+    .search-container {
+            margin: 15px 0;
+            max-width: 100%;
+        }  
+            
+        .auth-buttons {
+            justify-content: center;
+            margin-top: 10px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .main-left,
+        .main-right {
+            display: none;
+        }
+        
+        .main-between {
+            margin: 0;
+        }
+
+        .nav-container {
+                flex-wrap: wrap;
+                right: 0;
+                z-index: 100;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+               font-size: 12px;  
+            }
+    
+      
+        .nav-container.active {
+            display: flex;
+        }
+        
+        .dropdown-content {
+            position: static;
+            box-shadow: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .logo-text h1 {
+            font-size: 24px;
+        }
+        
+        .logo-text span {
+            font-size: 14px;
+        }
+        
+        .auth-btn {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .logo {
+            min-width: 100%;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 30px;
+        }
+        
+       .search-container {
+            min-width: 100%;
+        }  
+
+         
+        
+        .auth-buttons {
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+ 
+</style>
+{% endblock style %}
+
+{% block body %}
+ 
+
+<!-- Main Content -->
+<main>  
+    <!-- Left sidebar - hidden on mobile -->
+    <div class="main-left"></div>
+
+    <!-- Main content -->
+    <div class="main-between">
+        <br>
+        {% if job.apply_date %}
+        <div class="bg-warning-subtle d-inline p-2 ms-1 fs-4 text-warning-emphasis">
+            <i class="fas fa-calendar-alt"></i> Apply Before: {{job.apply_date}}
+        </div>
+        {% endif %}
+        
+        <br> <br>
+        {% if job.vacancy_title %}
+        <h4 class="fw-bold text-primary text-center fs-4">{{job.vacancy_title}}</h4>
+        {% endif %}
+        <br> 
+        
+        {% if job.vacancy_name %}
+        <h2>{{job.vacancy_name|safe}}</h2>
+        {% endif %}
+        <br>
+        
+        <div class="bg-primary text-white text-center fw-bold fs-3 text-center-mobile">
+            <i class="fas fa-calendar-check text-white ms-2"></i> Important Dates
+        </div>
+    
+        {% if job.online_application_date %}
+        <div class="text-primary ms-4 fs-3 mt-3">
+            ● Dates for start of online application: 
+            <span class="text-dark fw-bold">{{job.online_application_date}}</span>
+        </div>
+        {% endif %}
+        
+ 
+   {% if job.online_last_date %}
+     <div class="text-primary ms-4 fs-3"> ● Dates for submission of online application : <span class="text-dark fw-bold">  {{job.online_last_date}}  </span></div>
+    {% endif %}
+
+    {% if job.receip_of_application %}
+     <div class="text-primary ms-4 fs-3"> ● Last date for receipt of online application : <span class="text-dark fw-bold">   {{job.receipt_of_application}} </span></div>
+    {% endif %}
+
+    {% if job.last_date_payment_fee %}
+         <div class="text-primary ms-4 fs-3">● Last date for payment of fee : <span class="text-dark fw-bold">  {{job.last_date_payment_fee}}   </span></div>
+    {% endif %}
+
+    {% if job.last_date_fee %}
+       <div class="text-primary ms-4 fs-3"> ● Last date for making fee payment  : <span class="text-dark fw-bold">  {{job.last_date_fee}}    </span></div>
+    {% endif %}
+
+    {% if job.correction_date %}
+         <div class="text-primary ms-4 fs-3">●  Correction Date  : <span class="text-dark fw-bold"> {{job.correction_date}}   </span></div>
+    {% endif %}
+
+    {% if job.exam_date %}
+          <div class="text-primary ms-4 fs-3">  ● Exam date  : <span class="text-dark fw-bold">{{job.exam_date}}   </span></div>
+    {% endif %}
+
+    {% if job.admit_card_available %}
+           <div class="text-primary ms-4 fs-3">● Admit Card   : <span class="text-dark fw-bold">{{job.admit_card_available}}  </span></div>
+           {% endif %}
+
+           {% if job.answerkey_available_date %}
+            <div class="text-primary ms-4 fs-3">● Answer Key    : <span class="text-dark fw-bold"> {{job.answerkey_available_date}}   </span></div>
+            {% endif %}
+
+            {% if job.result_available %}
+             <div class="text-primary ms-4 fs-3">● Result   : <span class="text-dark fw-bold"> {{job.result_available}}   </span></div>
+            {% endif %}
+  
+            {% if job.final_result_available %}
+              <div class="text-primary ms-4 fs-3">● Final Result : <span class="text-dark fw-bold"> {{job.final_result_available}}   </span></div>
+            {% endif %}
+ 
+          {% if job.applecation_fee %}
+        <div class="text-dark fs-2 bg-primary text-white fw-bold text-center text-center-mobile mb-3 mt-3">
+            <i class="fas fa-university"></i> Application Fee</div>
+        {{job.applecation_fee|safe}}
+        {% endif %}
+        
+        <div class="text-primary ms-3 fs-3 mt-4">
+            <span class="text-danger fs-3">Note:</span> 
+            Candidates can deposit the exam fee through bank challan or online payment mode
+        </div>
+        <br>
+        
+        {% if job.vacancy_details %}
+        <div class="text-success fs-3 mb-3 text-center bg-primary text-white fw-bold text-center-mobile">
+            <i class="fas fa-file-alt text-white"></i> Vacancy Details</div>
+        {{job.vacancy_details|safe}}
+        {% endif %}
+        <br>
+        
+        {% if job.eligibility_criteria %}
+        <div class="text-center text-white bg-primary fs-3 mb-3 fw-bold text-center-mobile">
+            <i class="fas fa-user-graduate"></i> Eligibility Criteria</div>
+        {{job.eligibility_criteria|safe}}
+        <br><br> {% endif %}
+
+        {% if job.selection_process %}
+        <div class="fs-3 text-center bg-primary text-white fw-bold text-center-mobile mb-3">
+ <i class="fas fa-clipboard-check me-2"></i> Selection Process</div>
+        {{job.selection_process|safe}}
+        {% endif %}
+        
+        <div class="text-danger h3 ms-3">
+            <span>Note:</span> The selection of the candidate will be based on all Three exams.
+        </div>
+        <br>
+        
+        {% if job.important_information %}
+        <div class="fs-3 mb-3 bg-primary text-center text-white fw-bold text-center-mobile">
+            Important facts to know before applying online form</div>
+        {{job.important_information|safe}}
+        {% endif %}
+        <br>
+        
+        {% if job.how_to_apply %}
+        <div class="bg-primary text-white fs-3 text-center text-center-mobile mb-3 fw-bold">
+            How to Apply online form</div>
+        {{job.how_to_apply|safe}}
+        <br>
+        {% endif %}
+        
+        <div class="text-center fs-3 fw-bold bg-success-subtle text-danger-emphasis text-center-mobile p3">
+            <i class="fas fa-link"></i> Useful Important Links
+        </div>
+        
+        <!-- Important links - stacked vertically on mobile -->
+ 
+          {% if job.apply_online_link %}
+            <a href="{{job.apply_online_link}}" class="text-white full-width-mobile">
+                <div class="text-text-white mt-3 fs-3 text-center bg-success p-2 fw-bold">
+                    <i class="fas fa-edit"></i> Apply online
+                </div>
+            </a>
+            {% endif %}
+            
+            {% if job.admitcard_link %}
+         <a href="{{job.admitcard_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-primary p-2 fw-bold">   <i class="fas fa-id-card"></i>  &nbsp;&nbsp;Admit Card  </div>
+ </a> {% endif %}
+
+ {% if job.anserkeyI_link %}
+  <a href="{{job.answerkeyI_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-secondary p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Answer Key Phase I </div>
+ </a> {% endif %}
+
+  {% if job.anserkeyII_link %}
+   <a href="{{job.answerkeyII_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-primary p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Answer Key Phase II </div>
+ </a> {% endif %}
+
+  {% if job.result_link %}
+  <a href="{{job.result_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-secondary p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Result </div>
+ </a> {% endif %}
+
+  {% if job.resultI_link %}
+  <a href="{{job.resultI_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-success p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Result Phase I </div>
+ </a> {% endif %}
+
+  {% if job.resultII_link %}
+   <a href="{{job.resultII_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-secondary p-2 fw-bold">    <i class="fas fa-trophy"></i>  &nbsp;&nbsp;Result Phase II</div>
+ </a> {% endif %}
+
+  {% if job.result_final_link %}
+   <a href="{{job.result_final_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-primary p-2 fw-bold">  <i class="fas fa-trophy"></i>  &nbsp;&nbsp; Final Result</div>
+ </a>{% endif %}
+
+  {% if job.notification_link %}
+  <a href="{{job.notification_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-success p-2 fw-bold">   <i class="fas fa-download"></i>  &nbsp;&nbsp;Notification Download </div>
+ </a>{% endif %}
+
+  {% if job.officialwebsite_link %}
+  <a href="{{job.officialwebsite_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center p-2 fw-bold"  style="background-color: #4096EE;">   <i class="fas fa-file-pdf"></i>  &nbsp;&nbsp; Official Website </div>
+ </a>{% endif %}
+
+        </div>
+        
+        <br>
+    </div>
+    
+    <!-- Right sidebar - hidden on mobile -->
+    <div class="main-right">
+    
+    </div>
+</main>
+
+{% endblock body %}

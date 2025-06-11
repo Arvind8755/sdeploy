@@ -1,2 +1,11 @@
-User-agent: *
-Allow: 
+User-Agent: Googlebot-Mobile
+Allow: /
+
+User-Agent: Googlebot-Image
+Allow: /
+
+User-Agent: Mediapartners-Google
+Allow: /
+
+Sitemap: https://www.wifiresult.xyz/sitemap.xml
+Disallow: /404.shtml

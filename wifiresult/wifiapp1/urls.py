@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -12,4 +12,13 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('search/', views.search, name='search'),
     path('privacy/', views.privacy, name='privacy'),
+
+    
+    path("results/<slug:slug>/", views.resultpost, name="resultpost"),
+
+    path("jobs/<slug:slug>/", views.jobpost, name="jobpost"),
+
+
+
+
 ]  

@@ -1,0 +1,14 @@
+Package           Version
+----------------- --------
+asgiref           3.8.1
+bleach            6.2.0
+Django            5.2.1
+django-ckeditor-5 0.2.18
+django-js-asset   3.1.2
+django-summernote 0.8.20.0
+django-tinymce    4.1.0
+pillow            11.2.1
+pip               25.1.1
+sqlparse          0.5.3
+tzdata            2025.2
+webencodings      0.5.1

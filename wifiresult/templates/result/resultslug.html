@@ -1,0 +1,370 @@
+{% extends "basefile/base.html" %}
+{% load static %}
+
+{% block seo %}
+    <title>Results : Results 2025  Sarkari Result , Latest Online Form | Result 2025 - wifiresult.xyz<</title> 
+    <link rel="canonical" href="https://wifiresult.xyz/{{result.slug}}"/>
+  <meta name="description" content="{{result.meta_description}}">
+<meta name="keywords" content="{{result.meta_keywords}}">
+<meta property="og:title" content="{{ result.title }}" />
+<meta name="og:description" content="{{ result.meta_description}}"/>
+
+{% if result.og_image %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ result.og_image.url }}">
+{% endif %}
+{% if result.og_image_alt %}
+<meta property="og:image:alt" content="{{ result.og_image_alt }}" />
+{% endif %}
+ 
+<meta property="og:image:type" content="image/jpeg" />
+<meta name="twitter:card" content="summary_large_image" />
+{% if result.og_image %}
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ result.og_image.url }}" />
+{% endif %}
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="{{ result.updated_at|date:'c' }}">
+<meta property="article:modified_time" content="{{ result.updated_at|date:'c' }}">
+<meta property="og:url" content="https://wifiresult.xyz/{{result.slug}}"/>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+   {% if result.schema %}
+    <script type="application/ld+json">
+    {{ result.schema|safe }}
+    </script>
+    {% endif %}
+
+      <link rel=" shortcut icon" type="image/jpg" href="{% static 'images/favicon.jpg' %}">
+
+{% endblock seo %}
+
+{% block style %}
+<style> 
+
+    
+    /* ==================== MAIN CONTENT ==================== */
+    main {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px auto;
+    }
+
+    .main-left,
+    .main-right {
+        flex: 0 0 14rem;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .main-between {
+        flex: 1;
+        min-width: 300px;
+        padding: 0 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin: 0 15px;
+    }
+
+
+    /* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+    @media (max-width: 1100px) {
+        .header-content {
+            flex-direction: column;
+            align-items: stretch;
+            
+        }
+    .search-container {
+            margin: 15px 0;
+            max-width: 100%;
+        }  
+            
+        .auth-buttons {
+            justify-content: center;
+            margin-top: 10px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .main-left,
+        .main-right {
+            display: none;
+        }
+        
+        .main-between {
+            margin: 0;
+        }
+
+        .nav-container {
+                flex-wrap: wrap;
+                right: 0;
+                z-index: 100;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+               font-size: 12px;  
+            }
+    
+      
+        .nav-container.active {
+            display: flex;
+        }
+        
+        .dropdown-content {
+            position: static;
+            box-shadow: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .logo-text h1 {
+            font-size: 24px;
+        }
+        
+        .logo-text span {
+            font-size: 14px;
+        }
+        
+        .auth-btn {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .logo {
+            min-width: 100%;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 30px;
+        }
+        
+       .search-container {
+            min-width: 100%;
+        }  
+
+         
+        
+        .auth-buttons {
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+ 
+</style>
+{% endblock style %}
+
+{% block body %}
+ 
+
+<!-- Main Content -->
+<main>  
+    <!-- Left sidebar - hidden on mobile -->
+    <div class="main-left"></div>
+
+    <!-- Main content -->
+    <div class="main-between">
+        <br>
+        {% if result.apply_date %}
+        <div class="bg-warning-subtle d-inline p-2 ms-1 fs-4 text-warning-emphasis">
+            <i class="fas fa-calendar-alt"></i> Apply Before: {{result.apply_date}}
+        </div>
+        {% endif %}
+        
+        <br><br>
+        
+        <h4 class="fw-bold text-primary text-center fs-4">{{result.vacancy_title}}</h4>
+        <br> 
+        
+        <h2>{{result.vacancy_name|safe}}</h2>
+        <br>
+        
+        <div class="bg-primary text-white text-center fw-bold fs-3 text-center-mobile">
+            <i class="fas fa-calendar-check text-white ms-2"></i> Important Dates
+        </div>
+    
+        {% if result.online_application_date %}
+        <div class="text-primary ms-4 fs-3 mt-3">
+            ● Dates for start of online application: 
+            <span class="text-dark fw-bold">{{result.online_application_date}}</span>
+        </div>
+        {% endif %}
+        
+ 
+   {% if result.online_last_date %}
+     <div class="text-primary ms-4 fs-3"> ● Dates for submission of online application : <span class="text-dark fw-bold">  {{result.online_last_date}}  </span></div>
+    {% endif %}
+
+    {% if result.receip_of_application %}
+     <div class="text-primary ms-4 fs-3"> ● Last date for receipt of online application : <span class="text-dark fw-bold">   {{result.receipt_of_application}} </span></div>
+    {% endif %}
+
+    {% if result.last_date_payment_fee %}
+         <div class="text-primary ms-4 fs-3">● Last date for payment of fee : <span class="text-dark fw-bold">  {{result.last_date_payment_fee}}   </span></div>
+    {% endif %}
+
+    {% if result.last_date_fee %}
+       <div class="text-primary ms-4 fs-3"> ● Last date for making fee payment  : <span class="text-dark fw-bold">  {{result.last_date_fee}}    </span></div>
+    {% endif %}
+
+    {% if result.correction_date %}
+         <div class="text-primary ms-4 fs-3">●  Correction Date  : <span class="text-dark fw-bold"> {{result.correction_date}}   </span></div>
+    {% endif %}
+
+    {% if result.exam_date %}
+          <div class="text-primary ms-4 fs-3">  ● Exam date  : <span class="text-dark fw-bold">{{result.exam_date}}   </span></div>
+    {% endif %}
+
+    {% if result.admit_card_available %}
+           <div class="text-primary ms-4 fs-3">● Admit Card   : <span class="text-dark fw-bold">{{result.admit_catd_available}}  </span></div>
+           {% endif %}
+
+           {% if result.answerkey_available_date %}
+            <div class="text-primary ms-4 fs-3">● Answer Key    : <span class="text-dark fw-bold"> {{result.answerkey_available_date}}   </span></div>
+            {% endif %}
+
+            {% if result.result_available %}
+             <div class="text-primary ms-4 fs-3">● Result   : <span class="text-dark fw-bold"> {{result.result_available}}   </span></div>
+            {% endif %}
+  
+            {% if result.final_result_available %}
+              <div class="text-primary ms-4 fs-3">● Final Result : <span class="text-dark fw-bold"> {{result.final_result_available}}   </span></div>
+            {% endif %}
+ 
+        
+        <div class="text-dark fs-2 bg-primary text-white fw-bold text-center text-center-mobile mb-3 mt-3">
+            <i class="fas fa-university"></i> Application Fee
+
+
+        </div>
+        
+        {{result.applecation_fee|safe}}
+        
+        <div class="text-primary ms-3 fs-3 mt-4">
+            <span class="text-danger fs-3">Note:</span> 
+            Candidates can deposit the exam fee through bank challan or online payment mode
+        </div>
+        <br>
+        
+        <div class="text-success fs-3 mb-3 text-center bg-primary text-white fw-bold text-center-mobile">
+            <i class="fas fa-file-alt text-white"></i> Vacancy Details
+        </div>
+        
+        {{result.vacancy_details|safe}}
+        <br>
+        
+        <div class="text-center text-white bg-primary fs-3 mb-3 fw-bold text-center-mobile">
+            <i class="fas fa-user-graduate"></i> Eligibility Criteria
+        </div>
+        
+        {{result.eligibility_criteria|safe}}
+        <br><br>
+        
+        <div class="fs-3 text-center bg-primary text-white fw-bold text-center-mobile mb-3">
+ <i class="fas fa-clipboard-check me-2"></i> Selection Process
+        </div>
+        
+        {{result.selection_process|safe}}
+        
+        <div class="text-danger h3 ms-3">
+            <span>Note:</span> The selection of the candidate will be based on all Three exams.
+        </div>
+        <br>
+        
+        <div class="fs-3 mb-3 bg-primary text-center text-white fw-bold text-center-mobile">
+            Important facts to know before applying online form
+        </div>
+        
+        {{result.important_information|safe}}
+        <br>
+        
+        <div class="bg-primary text-white fs-3 text-center text-center-mobile mb-3">
+            How to Apply online form
+        </div>
+        
+        {{result.how_to_apply|safe}}
+        <br>
+        
+        <div class="text-center fs-3 fw-bold bg-success-subtle text-danger-emphasis text-center-mobile p3">
+            <i class="fas fa-link"></i> Useful Important Links
+        </div>
+        
+        <!-- Important links - stacked vertically on mobile -->
+        <div class="vertical-stack">
+            <a href="{{result.apply_online_link}}" class="text-white full-width-mobile">
+                <div class="text-text-white mt-3 fs-3 text-center bg-success p-2 fw-bold">
+                    <i class="fas fa-edit"></i> Apply online
+                </div>
+            </a>
+            
+            <a href="{{result.admitcard_link}}" class="text-white full-width-mobile">
+                <div class="text-text-white mt-3 fs-3 text-center bg-primary p-2 fw-bold">
+                    <i class="fas fa-id-card"></i> Admit Card
+                </div>
+            </a>
+            
+         <a href="{{result.admitcard_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-primary p-2 fw-bold">   <i class="fas fa-id-card"></i>  &nbsp;&nbsp;Admit Card  </div>
+ </a>
+
+  <a href="{{result.answerkeyI_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-secondary p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Answer Key Phase I </div>
+ </a>
+
+   <a href="{{result.answerkeyII_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-primary p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Answer Key Phase II </div>
+ </a>
+
+  <a href="{{result.result_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-secondary p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Result </div>
+ </a>
+
+  <a href="{{result.resultI_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-success p-2 fw-bold">    <i class="fas fa-key"></i>  &nbsp;&nbsp;Result Phase I </div>
+ </a>
+
+   <a href="{{result.resultII_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-secondary p-2 fw-bold">    <i class="fas fa-trophy"></i>  &nbsp;&nbsp;Result Phase II</div>
+ </a>
+
+   <a href="{{result.result_final_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-primary p-2 fw-bold">  <i class="fas fa-trophy"></i>  &nbsp;&nbsp; Final Result</div>
+ </a>
+
+  <a href="{{result.notification_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center bg-success p-2 fw-bold">   <i class="fas fa-download"></i>  &nbsp;&nbsp;Notification Download </div>
+ </a>
+
+  <a href="{{result.officialwebsite_link}}" class="text-white"><div class="text-text-white mt-3 fs-3 text-center p-2 fw-bold"  style="background-color: #4096EE;">   <i class="fas fa-file-pdf"></i>  &nbsp;&nbsp; Official Website </div>
+ </a>
+
+        </div>
+        
+        <br>
+    </div>
+    
+    <!-- Right sidebar - hidden on mobile -->
+    <div class="main-right">
+        Right
+    </div>
+</main>
+
+
+<script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+        const navContainer = document.getElementById('mainNav');
+        navContainer.classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const navContainer = document.getElementById('mainNav');
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (!navContainer.contains(event.target) {
+            navContainer.classList.remove('active');
+        }
+    });
+</script>
+{% endblock body %}

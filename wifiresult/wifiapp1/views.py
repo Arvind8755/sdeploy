@@ -1,15 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from wifiapp1.models import Result, Job
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
 def index(request):
-    # Render the index.html template
-    return render(request, 'mainfile/index.html')
+    results=Result.objects.all()
+    jobs=Job.objects.all()
+    return render(request, 'mainfile/index.html',{'results': results, 'jobs': jobs})
 
 def results(request):
-    # Render the results.html template
-    return render(request, 'mainfile/results.html')
+    results=Result.objects.all()
+    return render(request, 'mainfile/results.html',{'results': results})
 
 def admitcards(request):
     # Render the admitcards.html template
@@ -20,8 +23,8 @@ def answerkey(request):
     return render(request, 'mainfile/answerkeys.html')
 
 def jobs(request):
-    # Render the jobs.html template
-    return render(request, 'mainfile/jobs.html')
+    jobs=Job.objects.all()
+    return render(request, 'mainfile/jobs.html', {'jobs': jobs})
 
 def syllabus(request):
     # Render the syllabus.html template
@@ -42,3 +45,15 @@ def search(request):
 def privacy(request):
     # Render the privacy.html template
     return render(request, 'mainfile/privacy.html')
+
+
+def resultpost(request, slug):
+    result = get_object_or_404(Result, slug=slug)
+    return render(request, "result/resultslug.html", {"result": result,})
+
+
+def jobpost(request, slug):
+    job = get_object_or_404(Job, slug=slug)
+    return render(request, "job/jobslug.html", {"job": job,})
+
+

@@ -9,9 +9,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
-from pathlib import Path
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,14 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_2b24xqzeleuic^1$=$jt7-@3om5@lk-9v!n-2165=jh@l9&j2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG =  True
 DEBUG = False
-
-ALLOWED_HOSTS = ['52.55.243.218','localhost', '127.0.0.1','wifiresult.xyz','www.wifiresult.xyz']
+ALLOWED_HOSTS = ['18.234.77.107','localhost', '127.0.0.1','wifiresult.xyz','www.wifiresult.xyz']
+# ALLOWED_HOSTS = ['192.168.193.253']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wifiapp1',   
     'django.contrib.sitemaps',
+    # 'tinymce',
+    'ckeditor',
+    'django_ckeditor_5',
+    
+
 ]
 
 MIDDLEWARE = [
@@ -65,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -118,7 +126,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -127,11 +135,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Media files (user-uploaded content)
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
 # Static files directory
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Static files directory
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+
+# TINYMCE_DEFAULT_CONFIG = {
+#     'height': 1360,
+#     'width': 1200,
+#     'plugins': "textcolor colorpicker",
+#     'toolbar': "undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+# }
